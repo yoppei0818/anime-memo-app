@@ -5,11 +5,23 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data: function () {
     return {
-      message: "Hello Vue!"
+      memos: ""
     }
+  },
+  methods: {
+    setMemo: function() {
+      axios.get('/api/memos').then(res => (
+        this.memos = res.data
+      ))
+    }
+  },
+  mounted() {
+    this.setMemo();
   }
 }
 </script>
