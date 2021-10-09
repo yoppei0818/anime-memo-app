@@ -3,7 +3,7 @@ class Api::MemosController < ApplicationController
         @memos = Memo.order(created_at: :DESC)
     end
 
-    def created
+    def create
         @memo = Memo.new(memo_params)
         if @memo.save
             render :show, status: :created
@@ -12,9 +12,8 @@ class Api::MemosController < ApplicationController
         end
     end
 
-    def private
+    private
         def memo_params
             params.permit(:title, :description)
         end
-    end
 end
