@@ -2,12 +2,12 @@
   <div id="app">
     <div class="form">
       <div class="form-group">
-        <input v-model="title" placeholder="title" class="form-control">
+        <input v-model="title" placeholder="アニメ名" class="form-control">
       </div>
       <div class="form-group">
-        <input v-model="description" placeholder="description" class="form-control">
+        <input type="file" @change="selectedFile" accept="image/png, image/jpeg, image/jpg" class="form-control">
       </div>
-      <button @click="addMemo">メモを追加</button>
+      <button @click="addMemo">追加</button>
     </div>
     <div class="flex">
       <div v-for="memo in memos" :key="memo.id" class="card">
@@ -15,7 +15,8 @@
           <div class="card-title">
             {{ memo.title }}
           </div>
-          {{ memo.description }}
+          <!-- memo.image.urlをimgタグの中に落とし込みたいがみつかっていない -->
+          <img v-bind:src="memo.image.url" v-bind:alt="memo.title">
         </div>
       </div>
     </div>
@@ -30,23 +31,38 @@ export default {
     return {
       memos: "",
       title: "",
-      description: "",
+      image: "",
     }
   },
   methods: {
+    selectedFile: function(e) {
+      e.preventDefault()
+      this.image = e.target.files[0]
+      console.log(this.image)
+    },
     setMemo: function() {
       axios.get('/api/memos').then(res => (
         this.memos = res.data
       ))
     },
     addMemo: function() {
-      axios.post('/api/memos', {
-        title: this.title,
-        description: this.description
-      }).then(res => {
+      const formData = new FormData()
+      formData.append("title",this.title)
+      formData.append("image",this.image)
+      console.log(formData);
+      const config = {
+        headers: {
+          "content-type": "multipart/form-data",
+        }
+      }
+      
+      axios.post('/api/memos',
+        formData,
+        config
+      ).then(res => {
         this.setMemo()
         this.title = ""
-        this.description = ""
+        this.image = ""
       })
     }
   },

@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2021_10_08_102009) do
 
   create_table "memos", force: :cascade do |t|
     t.string "title"
-    t.text "description"
+    t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

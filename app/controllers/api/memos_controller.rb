@@ -5,6 +5,7 @@ class Api::MemosController < ApplicationController
 
     def create
         @memo = Memo.new(memo_params)
+        # binding.pry
         if @memo.save
             render :show, status: :created
         else
@@ -14,6 +15,7 @@ class Api::MemosController < ApplicationController
 
     private
         def memo_params
-            params.permit(:title, :description)
+            # requireを設定すると送れなくなる
+            params.permit(:title, :image)
         end
 end

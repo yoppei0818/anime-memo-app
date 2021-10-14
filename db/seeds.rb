@@ -6,4 +6,4 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Memo.create(title: "サンプル用", description: "サンプル用のメモです。")
+# Memo.create(title: "サンプル用", description: "サンプル用のメモです。")
