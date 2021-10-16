@@ -1,1 +1,1 @@
-json.array! @memos, :title, :image
+json.array! @memos, :id, :title, :image

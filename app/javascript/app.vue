@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <div class="logo">
+      <h1>アニメ図鑑</h1>
+    </div>
     <div class="form">
       <div class="form-group">
         <input v-model="title" placeholder="アニメ名" class="form-control">
@@ -15,8 +18,10 @@
           <div class="card-title">
             {{ memo.title }}
           </div>
-          <!-- memo.image.urlをimgタグの中に落とし込みたいがみつかっていない -->
           <img v-bind:src="memo.image.url" v-bind:alt="memo.title">
+          <div class="card-destroy">
+            <button @click="destroyMemo(memo.id)">削除する</button>
+          </div>
         </div>
       </div>
     </div>
@@ -41,15 +46,14 @@ export default {
       console.log(this.image)
     },
     setMemo: function() {
-      axios.get('/api/memos').then(res => (
+      axios.get('/api/memos').then(res => {
         this.memos = res.data
-      ))
+      })
     },
     addMemo: function() {
       const formData = new FormData()
       formData.append("title",this.title)
       formData.append("image",this.image)
-      console.log(formData);
       const config = {
         headers: {
           "content-type": "multipart/form-data",
@@ -62,7 +66,11 @@ export default {
       ).then(res => {
         this.setMemo()
         this.title = ""
-        this.image = ""
+      })
+    },
+    destroyMemo: function(id) {
+      axios.delete(`/api/memos/${id}`).then(res => {
+        this.setMemo()
       })
     }
   },
@@ -73,6 +81,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.logo {
+  // background-color: aqua;
+
+  h1 {
+    text-align: center;
+  }
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -116,6 +132,12 @@ button {
   &-title {
     margin-bottom: .75rem;
     font-weight: 600;
+  }
+
+  &-destroy {
+    button {
+      color: black
+    }
   }
 }
 </style>

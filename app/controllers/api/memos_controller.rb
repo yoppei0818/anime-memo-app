@@ -7,8 +7,17 @@ class Api::MemosController < ApplicationController
         @memo = Memo.new(memo_params)
         # binding.pry
         if @memo.save
-            render :show, status: :created
+            render :index, status: :created
         else
+            render json: @memo.errors, status: :unprocessable_entity
+        end
+    end
+
+    def destroy
+        @memo = Memo.find(params[:id])
+        if @memo.destroy
+            render :index
+        else 
             render json: @memo.errors, status: :unprocessable_entity
         end
     end
