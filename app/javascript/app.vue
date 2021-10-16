@@ -10,7 +10,7 @@
       <div class="form-group">
         <input type="file" @change="selectedFile" accept="image/png, image/jpeg, image/jpg" class="form-control">
       </div>
-      <button @click="addMemo">追加</button>
+      <button class="add-button" @click="addMemo">追加</button>
     </div>
     <div class="flex">
       <div v-for="memo in memos" :key="memo.id" class="card">
@@ -82,35 +82,62 @@ export default {
 
 <style lang="scss" scoped>
 .logo {
-  // background-color: aqua;
+  width: 280px;
+  margin: 0 auto;
 
   h1 {
     text-align: center;
+    font-family: 'Noto Sans JP', sans-serif;
+    background: linear-gradient(transparent 70%, #a8eaff 70%);
   }
 }
 
 .form {
+  width: 500px;
+  background-color: rgba(91, 195, 243, 0.527);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 32px;
+  margin: 32px auto;
+  padding: 30px 0px;
+  border-radius: 10px;
   
   &-group {
-    margin-bottom: 1rem;
+    margin-bottom: 15px;
+
+    input[type="file"] {
+      cursor: pointer;
+    }
   }
   
   &-control {
-    width: 600px;
+    width: 300px;
     min-height: 24px;
-    font-size: 1rem;
-    border: 1px solid #ced4da;
-    padding: 4px 8px;
+    font-size: 12px;
+    border: 0.5px solid rgba(0, 0, 0, 0.349);
+    padding: 8px 8px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.2);
   }
 }
 
-button {
-  width: 200px;
+.add-button {
+  margin-top: 10px;
+  width: 150px;
+  border: 1px solid rgba(0, 0, 0, 0.349);
+  border-radius: 5px;
+  background: #fff;
+  transition: 0.3s;
+  padding: 10px;
+  font-size: 12px;
+  font-weight: bolder;
+  cursor: pointer;
+
+  &:hover {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.7);
+  }
 }
 
 .flex {
