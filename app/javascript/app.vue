@@ -20,7 +20,7 @@
           </div>
           <img v-bind:src="memo.image.url" v-bind:alt="memo.title">
           <div class="card-destroy">
-            <button @click="destroyMemo(memo.id)">削除する</button>
+            <button @click="destroyMemo(memo.id)">削除</button>
           </div>
         </div>
       </div>
@@ -144,26 +144,51 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  // background-color: aqua;
 }
 
 .card {
-  width: 238px;
-  border: 1px solid rgba(0,0,0,.125);
-  border-radius: .25rem;
-  margin: 16px;
+  width: 20%;
+  border: 1px solid rgba(0,0,0,0.5);
+  border-radius: 5px;
+  margin: 15px;
   
   &-body {
-    padding: 1.25rem;
+    padding: 15px 0px;
+    text-align: center;
+
+    img {
+      margin-top: 15px;
+    }
   }
   
   &-title {
-    margin-bottom: .75rem;
+    width: 40%;
+    margin: 0 auto;
+    background: linear-gradient(transparent 50%, #a8eaff 50%);
     font-weight: 600;
   }
 
   &-destroy {
     button {
-      color: black
+      cursor: pointer;
+      font-weight: bolder;
+      background: #fff;
+      margin-top: 10px;
+      border-radius: 50%;
+      font-size: 12px;
+      transition: 0.3s;
+      width: 50px;
+      height: 50px;
+      padding: 0;
+      border: 1px solid rgba(0, 0, 0, 0.349);
+      -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+
+      &:hover {
+        color: #fff;
+        background: rgba(0, 0, 0, 0.7);
+      }
     }
   }
 }
