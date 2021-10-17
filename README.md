@@ -1,24 +1,26 @@
-# README
+<!-- サムネイル -->
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+![スクリーンショット (16)](https://user-images.githubusercontent.com/79401069/137628960-7cfaa289-7990-41e2-803f-b4d9b8fc6a5b.png)
 
-Things you may want to cover:
+# アニメ図鑑（アニメ管理アプリ）
 
-* Ruby version
+# 制作理由
 
-* System dependencies
+→ 　友達のアニメの話をしている時に、自分が何のアニメを見たことがあるか忘れてしまうことが自分も含め多々あった。
+　　そこで、自分が見たことのあるアニメを保存（管理）することのできるアプリケーションを作ってみようとなった。
 
-* Configuration
+# 制作期間
 
-* Database creation
+→ 　 2 週間
 
-* Database initialization
+# 環境
 
-* How to run the test suite
+→ 　 Windows10pro
 
-* Services (job queues, cache servers, search engines, etc.)
+# 仕様
 
-* Deployment instructions
-
-* ...
+- フロントエンド：Vue.js、SCSS
+- バックエンド：Rails6
+- DB：開発、テスト環境 → SQLite 本番環境 → PostgreSQL
+- ソースコード管理：Git
+- デプロイ：Heroku（[アニメ図鑑](https://memo-app-practice-0818.herokuapp.com/)）
