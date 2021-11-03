@@ -14,7 +14,7 @@
 
 # 環境
 
-→ 　 Windows10pro
+→ 　 Windows10pro、VScode
 
 # 仕様
 
